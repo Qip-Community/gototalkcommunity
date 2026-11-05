@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gototalk — Переход на сайт</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+            padding: 40px 32px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+
+        h1 {
+            font-size: 22px;
+            color: #2d3748;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 15px;
+            color: #718096;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .link-box {
+            display: flex;
+            align-items: center;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            gap: 10px;
+        }
+
+        .link-box a {
+            flex: 1;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            word-break: break-all;
+            text-align: left;
+        }
+
+        .link-box a:hover {
+            text-decoration: underline;
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: #fff;
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.97);
+        }
+
+        .copy-btn.copied {
+            background: #48bb78;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .hint {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #a0aec0;
+        }
+
+        @media (max-width: 420px) {
+            .card {
+                padding: 28px 20px;
+            }
+            h1 {
+                font-size: 19px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="icon">🚀</div>
+        <h1>Переход на наш сайт</h1>
+        <p>Вставьте эту ссылку в адресную строку браузера, чтобы перейти на сайт:</p>
+
+        <div class="link-box">
+            <a href="https://www.gototalk.cloud-ip.cc/" target="_blank" rel="noopener">
+                https://www.gototalk.cloud-ip.cc/
+            </a>
+            <button class="copy-btn" onclick="copyLink(this)">Копировать</button>
+        </div>
+
+        <a class="btn" href="https://www.gototalk.cloud-ip.cc/" target="_blank" rel="noopener">
+            Перейти на сайт →
+        </a>
+
+        <div class="hint">Если кнопка не работает — скопируйте ссылку вручную</div>
+    </div>
+
+    <script>
+        function copyLink(btn) {
+            var link = "https://www.gototalk.cloud-ip.cc/";
+            var done = function () {
+                btn.textContent = "Скопировано!";
+                btn.classList.add("copied");
+                setTimeout(function () {
+                    btn.textContent = "Копировать";
+                    btn.classList.remove("copied");
+                }, 2000);
+            };
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(link).then(done).catch(function () {
+                    fallbackCopy(link, done);
+                });
+            } else {
+                fallbackCopy(link, done);
+            }
+        }
+
+        function fallbackCopy(text, done) {
+            var ta = document.createElement("textarea");
+            ta.value = text;
+            ta.style.position = "fixed";
+            ta.style.opacity = "0";
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+                document.execCommand("copy");
+                done();
+            } catch (e) {
+                alert("Не удалось скопировать. Скопируйте ссылку вручную.");
+            }
+            document.body.removeChild(ta);
+        }
+    </script>
+</body>
+</html>
