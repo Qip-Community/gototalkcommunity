@@ -76,7 +76,6 @@
             border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 12px 16px;
-            margin-bottom: 16px;
             gap: 10px;
         }
 
@@ -99,8 +98,8 @@
             border: none;
             color: #fff;
             border-radius: 8px;
-            padding: 8px 14px;
-            font-size: 13px;
+            padding: 10px 16px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.2s, opacity 0.2s;
@@ -119,40 +118,20 @@
             background: #48bb78;
         }
 
-        .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-            text-decoration: none;
-            padding: 14px 32px;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 600;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 28px rgba(102, 126, 234, 0.5);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .hint {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #a0aec0;
-        }
-
         @media (max-width: 420px) {
             .card {
                 padding: 28px 20px;
             }
             h1 {
                 font-size: 19px;
+            }
+            .link-box {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .link-box a {
+                text-align: center;
+                margin-bottom: 8px;
             }
         }
     </style>
@@ -161,7 +140,7 @@
     <div class="card">
         <div class="icon">🚀</div>
         <h1>Переход на наш сайт</h1>
-        <p>Вставьте эту ссылку в адресную строку браузера, чтобы перейти на сайт:</p>
+        <p>Вставьте эту ссылку в браузер, чтобы перейти на наш сайт:</p>
 
         <div class="link-box">
             <a href="https://www.gototalk.cloud-ip.cc/" target="_blank" rel="noopener">
@@ -169,12 +148,6 @@
             </a>
             <button class="copy-btn" onclick="copyLink(this)">Копировать</button>
         </div>
-
-        <a class="btn" href="https://www.gototalk.cloud-ip.cc/" target="_blank" rel="noopener">
-            Перейти на сайт →
-        </a>
-
-        <div class="hint">Если кнопка не работает — скопируйте ссылку вручную</div>
     </div>
 
     <script>
